@@ -1,0 +1,35 @@
+## Visual Studio ##
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+## .NET / C# (Compilación y Binarios) ##
+[Bb]in/
+[Oo]bj/
+*.exe
+*.dll
+*.pdb
+*.suo
+
+## Web / Web Services (.NET Core / ASP.NET) ##
+.wb/
+appsettings.Development.json
+appsettings.Production.json
+# Nota: Guarda tus contraseñas y connections strings en User Secrets, no en appsettings.
+
+## Herramientas de publicación y empaquetado ##
+*.publish.xml
+*.pubxml
+*.pubxml.user
+_Data/
+archivedpackages/
+
+## Paquetes NuGet ##
+*.nuget.props
+*.nuget.targets
+packages/
+
+## Log de errores y reportes ##
+*.log
+*.diagnostic

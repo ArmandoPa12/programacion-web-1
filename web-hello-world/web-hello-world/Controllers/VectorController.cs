@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using web_hello_world.Dto;
 
 namespace web_hello_world.Controllers
@@ -53,6 +54,33 @@ namespace web_hello_world.Controllers
                 respuesta.ErrorMessage = ex.Message;
             }
 
+            return Ok(respuesta);
+        }
+
+        [HttpGet]
+        [Route("factorial/{n:int}")]
+        public IActionResult factorial([FromRoute] int n)
+        {
+            Respuesta respuesta = new Respuesta();
+            try
+            {
+                int fact = 0;
+                if (n == 0 || n == 1)
+                {
+                    fact = 1;
+                }
+                for (int i = 1; i <= n; i++)
+                {
+                    fact *= i;
+                }
+                respuesta .Valor = fact;
+                respuesta.Success = true;
+            }
+            catch (Exception)
+            {
+                respuesta.Valor = 0;
+                respuesta.Success = false;
+            }
             return Ok(respuesta);
         }
     }

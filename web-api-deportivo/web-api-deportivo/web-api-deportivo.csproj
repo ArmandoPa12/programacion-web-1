@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>web_hello_world</RootNamespace>
+    <RootNamespace>web_api_deportivo</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\web-hello-world.ServiceDefaults\web-hello-world.ServiceDefaults.csproj" />
+    <Folder Include="Validator\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,6 @@
+@web_api_deportivo_HostAddress = http://localhost:5047
+
+GET {{web_api_deportivo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

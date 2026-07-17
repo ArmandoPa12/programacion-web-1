@@ -31,6 +31,15 @@ namespace web_api_deportivo
 
             builder.Services.AddScoped<JwtService>();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("BlazorCorsPolicy", policy =>
+                {
+                    policy.WithOrigins("https://localhost:7232", "http://localhost:5175")
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
 
             builder.Services.AddScoped<IRolesRepository, RolesRepository>();
                 builder.Services.AddScoped<IPermisosRepository, PermisosRepository>();
@@ -79,6 +88,7 @@ namespace web_api_deportivo
                 }
 
                 app.UseHttpsRedirection();
+            app.UseCors("BlazorCorsPolicy");
             app.UseAuthentication();
             app.UseAuthorization();
 

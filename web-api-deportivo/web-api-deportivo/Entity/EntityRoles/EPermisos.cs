@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace web_api_deportivo.Entity
+namespace web_api_deportivo.Entity.EntityRoles
 {
     [Table("permisos")]
     public class EPermisos
@@ -13,5 +13,6 @@ namespace web_api_deportivo.Entity
 
         [Column("descripcion")]
         public string Descripcion { get; set; } = string.Empty;
+        public ICollection<ERoles> Roles { get; set; } = new List<ERoles>();
     }
 }

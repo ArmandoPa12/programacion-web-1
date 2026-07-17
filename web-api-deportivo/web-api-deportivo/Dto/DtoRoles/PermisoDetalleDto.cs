@@ -1,7 +1,6 @@
-﻿
-namespace web_api_deportivo.Dto
+﻿namespace web_api_deportivo.Dto.DtoRoles
 {
-    public class PermisosDto
+    public class PermisoDetalleDto
     {
         public int Id { get; set; }
         public string NombrePermiso { get; set; } = string.Empty;

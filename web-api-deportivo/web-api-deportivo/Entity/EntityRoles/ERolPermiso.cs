@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace web_api_deportivo.Entity
+namespace web_api_deportivo.Entity.EntityRoles
 {
     [Table("rol_permiso")]
     public class ERolPermiso

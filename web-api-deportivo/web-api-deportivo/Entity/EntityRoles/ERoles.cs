@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
-namespace web_api_deportivo.Entity
+namespace web_api_deportivo.Entity.EntityRoles
 {
     [Table("roles")]
     public class ERoles
@@ -14,5 +14,6 @@ namespace web_api_deportivo.Entity
 
         [Column("descripcion")]
         public string Descripcion { get; set; } = string.Empty;
+        public ICollection<EPermisos> Permisos { get; set; } = new List<EPermisos>();
     }
 }

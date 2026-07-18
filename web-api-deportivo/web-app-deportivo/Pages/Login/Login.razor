@@ -1,0 +1,80 @@
+﻿@page "/login"
+
+
+@using web_app_deportivo.Models
+@using System.Net.Http.Json
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
+
+
+<div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #cbd5e0; border-radius: 8px;">
+    <h3 style="text-align: center; margin-bottom: 20px;">Iniciar Sesión</h3>
+
+    <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
+        <DataAnnotationsValidator />
+
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px;">Correo Electrónico:</label>
+            <InputText type="email" style="width: 100%; padding: 8px;" @bind-Value="loginModel.Email" />
+            <ValidationMessage For="@(() => loginModel.Email)" style="color: red; font-size: 12px;" />
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px;">Contraseña:</label>
+            <InputText type="password" style="width: 100%; padding: 8px;" @bind-Value="loginModel.Password" />
+            <ValidationMessage For="@(() => loginModel.Password)" style="color: red; font-size: 12px;" />
+        </div>
+
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div style="color: red; margin-bottom: 15px; font-size: 14px;">@errorMessage</div>
+        }
+
+        <button type="submit" disabled="@isSubmitting" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px;">
+            @(isSubmitting ? "Cargando..." : "Ingresar")
+        </button>
+    </EditForm>
+</div>
+
+@code {
+    private LoginDto loginModel = new();
+    private string errorMessage = string.Empty;
+    private bool isSubmitting = false;
+
+    private async Task HandleLogin()
+    {
+        isSubmitting = true;
+        errorMessage = string.Empty;
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync("api/Usuario/login", loginModel);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var resultado = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
+
+                if (resultado != null && !string.IsNullOrEmpty(resultado.Token))
+                {
+                    await JSRuntime.InvokeVoidAsync("localStorage.setItem", "authToken", resultado.Token);
+                    Console.WriteLine("TOKEN GUARDADO EN LOCALSTORAGE");
+                    // Redirigimos
+                    Navigation.NavigateTo("/");
+                }
+            }
+            else
+            {
+                errorMessage = "Usuario o contraseña incorrectos.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al conectar con la API: {ex.Message}";
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+}

@@ -1,11 +1,15 @@
 ﻿@page "/login"
 
 
+@using Microsoft.AspNetCore.Authorization
 @using web_app_deportivo.Models
 @using System.Net.Http.Json
+@using web_app_deportivo.Service
+@inject CustomAuthStateProvider AuthProvider
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
 @inject NavigationManager Navigation
+@attribute [AllowAnonymous]
 
 
 <div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #cbd5e0; border-radius: 8px;">
@@ -58,8 +62,7 @@
                 if (resultado != null && !string.IsNullOrEmpty(resultado.Token))
                 {
                     await JSRuntime.InvokeVoidAsync("localStorage.setItem", "authToken", resultado.Token);
-                    Console.WriteLine("TOKEN GUARDADO EN LOCALSTORAGE");
-                    // Redirigimos
+                    AuthProvider.NotifyUserAuthentication();
                     Navigation.NavigateTo("/");
                 }
             }

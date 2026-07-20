@@ -6,11 +6,13 @@ using web_api_deportivo.Dto.DtoRoles;
 using web_api_deportivo.Entity.EntityRoles;
 using web_api_deportivo.IRepository;
 using web_api_deportivo.Validator;
+using Microsoft.AspNetCore.Authorization;
 
 namespace web_api_deportivo.Controllers.ModuloRoles
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RolController : ControllerBase
     {
         private readonly AppDbContext _db;

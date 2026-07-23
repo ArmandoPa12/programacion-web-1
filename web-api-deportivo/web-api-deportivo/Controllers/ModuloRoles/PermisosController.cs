@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using web_api_deportivo.Conection;
 using web_api_deportivo.IRepository;
@@ -7,12 +8,12 @@ namespace web_api_deportivo.Controllers.ModuloRoles
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PermisosController : ControllerBase
     {
         private readonly AppDbContext _db;
         private readonly IPermisosRepository _repo;
 
-        // El sistema inyecta el DbContext automáticamente aquí
         public PermisosController(AppDbContext db, IPermisosRepository rolesRepository)
         {
             _db = db;

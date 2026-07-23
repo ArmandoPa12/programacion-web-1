@@ -19,6 +19,8 @@ namespace web_api_deportivo.Conection
         // grupos
         public DbSet<EInfraestructura> Infraestructuras { get; set; } = null!;
         public DbSet<ETaller> Talleres { get; set; } = null!;
+        public DbSet<EGrupoTaller> GruposTalleres { get; set; } = null!;
+        public DbSet<EHorarioGrupo> HorariosGrupo { get; set; } = null!;
 
 
 
@@ -45,6 +47,30 @@ namespace web_api_deportivo.Conection
                 .HasOne(c => c.Alumno)
                 .WithMany(a => a.ContactosEmergencia)
                 .HasForeignKey(c => c.Alumno_id)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<EGrupoTaller>()
+                .HasOne(g => g.Taller)
+                .WithMany()
+                .HasForeignKey(g => g.TallerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<EGrupoTaller>()
+                .HasOne(g => g.Infraestructura)
+                .WithMany()
+                .HasForeignKey(g => g.InfraestructuraId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<EGrupoTaller>()
+                .HasOne(g => g.Profesor)
+                .WithMany()
+                .HasForeignKey(g => g.ProfesorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<EGrupoTaller>()
+                .HasMany(g => g.Horarios)
+                .WithOne(h => h.Grupo)
+                .HasForeignKey(h => h.GrupoId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

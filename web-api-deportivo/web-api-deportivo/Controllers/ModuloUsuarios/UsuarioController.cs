@@ -6,11 +6,13 @@ using Microsoft.EntityFrameworkCore;
 using web_api_deportivo.Entity.EntityUsuario;
 using web_api_deportivo.Validator;
 using web_api_deportivo.Service;
+using Microsoft.AspNetCore.Authorization;
 
 namespace web_api_deportivo.Controllers.ModuloUsuarios
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsuarioController : ControllerBase
     {
         private readonly AppDbContext _db;

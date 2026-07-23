@@ -48,6 +48,7 @@ namespace web_api_deportivo
             builder.Services.AddScoped<IAlumnoRepository, AlumnoRepository>();
             builder.Services.AddScoped<IInfraestructuraRepository, InfraestructuraRepository>();
             builder.Services.AddScoped<ITallerRepository, TallerRepository>();
+            builder.Services.AddScoped<IGrupoTallerRepository, GrupoTallerRepository>();
 
             // Validadores de FluentValidation
             builder.Services.AddValidatorsFromAssemblyContaining<RolValidator>();
@@ -56,6 +57,7 @@ namespace web_api_deportivo
             builder.Services.AddValidatorsFromAssemblyContaining<AlumnoValidator>();
             builder.Services.AddScoped<InfraestructuraValidator>();
             builder.Services.AddScoped<TallerValidator>();
+            builder.Services.AddScoped<GrupoTallerValidator>();
 
 
             // Configuración de Autenticación con JWT

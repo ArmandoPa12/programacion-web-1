@@ -10,7 +10,7 @@ namespace web_api_deportivo.Controllers.ModuloUsuarios
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class AlumnoController : ControllerBase
     {
         private readonly AppDbContext _db;

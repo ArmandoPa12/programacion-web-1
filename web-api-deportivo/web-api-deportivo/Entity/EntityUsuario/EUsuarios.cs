@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using web_api_deportivo.Entity.EntityInscripcion;
 using web_api_deportivo.Entity.EntityRoles;
 
 namespace web_api_deportivo.Entity.EntityUsuario
@@ -43,5 +44,9 @@ namespace web_api_deportivo.Entity.EntityUsuario
         public int RolId { get; set; }
         [ForeignKey("RolId")]
         public ERoles Rol { get; set; }
+
+        public ICollection<EInscripcion> InscripcionesRegistradas { get; set; } = new List<EInscripcion>();
+
+        public ICollection<EAsistencia> AsistenciasRegistradas { get; set; } = new List<EAsistencia>();
     }
 }

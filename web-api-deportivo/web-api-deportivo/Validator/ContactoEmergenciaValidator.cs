@@ -1,15 +1,20 @@
 ﻿using FluentValidation;
+using web_api_deportivo.Conection;
 using web_api_deportivo.Dto.DtoUsuario;
+using Microsoft.EntityFrameworkCore;
 
 namespace web_api_deportivo.Validator
 {
     public class ContactoEmergenciaValidator : AbstractValidator<ContactoEmergenciaDto>
     {
+        
         public ContactoEmergenciaValidator()
         {
+
             RuleFor(x => x.NombreCompleto)
                 .NotEmpty().WithMessage("El nombre del contacto es obligatorio.")
                 .MaximumLength(100).WithMessage("El nombre no puede superar los 100 caracteres.");
+                
 
             RuleFor(x => x.Telefono)
                 .NotEmpty().WithMessage("El teléfono es obligatorio.")

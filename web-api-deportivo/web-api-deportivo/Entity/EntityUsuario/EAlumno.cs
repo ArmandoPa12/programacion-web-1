@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using web_api_deportivo.Entity.EntityInscripcion;
 
 namespace web_api_deportivo.Entity.EntityUsuario
 {
@@ -44,5 +45,7 @@ namespace web_api_deportivo.Entity.EntityUsuario
 
         public ICollection<EContactoEmergencias> ContactosEmergencia { get; set; }
             = new List<EContactoEmergencias>();
+        public ICollection<EInscripcion> Inscripciones { get; set; }
+            = new List<EInscripcion>();
     }
 }

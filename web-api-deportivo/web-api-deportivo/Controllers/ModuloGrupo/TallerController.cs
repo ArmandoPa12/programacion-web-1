@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using web_api_deportivo.Dto.DtoGrupo;
 using web_api_deportivo.IRepository;
@@ -8,6 +9,7 @@ namespace web_api_deportivo.Controllers.ModuloGrupo
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TallerController : ControllerBase
     {
         private readonly ITallerRepository _tallerRepository;
